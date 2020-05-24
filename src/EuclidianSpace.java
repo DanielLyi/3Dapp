@@ -6,3 +6,4 @@ public class EuclidianSpace extends JComponent {
     private double z;
 
 }
+
