@@ -1,18 +1,20 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 public abstract class PointSet {
-    private ArrayList<Point3> points = new ArrayList<>();
+    private HashSet<Point3> points = new HashSet<>();
     private boolean set = false;
 
-    public ArrayList<Point3> getPoints() {
+    public HashSet<Point3> getPoints() {
         if(!set) {
             throw new IllegalStateException(
                     "Points have not been set");
         }
-        return new ArrayList<>(points);
+        return new HashSet<>(points);
     }
 
-    protected void setPoints(ArrayList<Point3> pos) {
+    protected void setPoints(Collection<Point3> pos) {
         if (!set) {
             points.addAll(pos);
         } else {
