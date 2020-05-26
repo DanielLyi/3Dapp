@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.*;
@@ -11,15 +12,17 @@ public class Sphere extends PointSet {
      * A constructor of the sphere. All the points
      * are automatically added based on the
      * values given.
-     * @param x0 x coordinate of the center
-     * @param y0 y coordinate of the center
-     * @param z0 z coordinate of the center
+     *
+     * @param x0  x coordinate of the center
+     * @param y0  y coordinate of the center
+     * @param z0  z coordinate of the center
      * @param rad radius of the sphere
      */
-    public Sphere(double x0, double y0, double z0, double rad) {
+    public Sphere(double x0, double y0, double z0, double rad, Color c) {
+        super(c);
         ArrayList<Point3> points = new ArrayList<>();
         /*Using parametric equation for the sphere
-        * based on two parameters*/
+         * based on two parameters*/
         double s;
         double t = -0.5 * PI;
         while (t <= 0.5 * PI) {
@@ -33,5 +36,9 @@ public class Sphere extends PointSet {
         }
         //Adding all the points formed
         super.setPoints(points);
+    }
+
+    public Sphere(double x0, double y0, double z0, double rad) {
+        this(x0, y0, z0, rad, null);
     }
 }

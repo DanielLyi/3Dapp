@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  * A class from which the program starts.
  * Contains the {@code main()} method.
@@ -9,7 +11,9 @@ public class Factory {
      * @param args arguments of the main
      */
     public static void main(String[] args) {
-        PointSet ps1 = new Sphere(0, 0, 0, 1);
-        System.out.println(ps1.getPoints().toString());
+        MyFrame frame = new MyFrame();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(1000, 1000);
+        frame.setVisible(true);
     }
 }

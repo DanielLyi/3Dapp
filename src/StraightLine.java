@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+
+import static java.lang.Math.*;
 
 /**
  * A class that serves as a set of Points3,
@@ -26,10 +29,35 @@ public class StraightLine extends PointSet {
         ArrayList<Point3> set = new ArrayList<>();
         /*Using the parametric equation for the line
         * to add the points*/
-        for (double t = -5.0; t < 10.0; t = t + 0.1) {
+
+        /*Getting the length of the vector*/
+        double r = sqrt(pow(vecX, 2) + pow(vecY, 2) + pow(vecZ, 2));
+
+        /*Norming the vector (so it has the
+          length of 1)*/
+        vecX = vecX / r;
+        vecY = vecY / r;
+        vecZ = vecZ / r;
+
+        for (double t = -50; t < 100; t = t + 0.1) {
             set.add(new Point3(t * vecX + x0,
                     t * vecY + y0, t * vecZ + z0));
         }
         super.setPoints(set);
+    }
+
+    public Point3 getPointWithNearestY(double y) {
+        HashSet<Point3> points = getPoints();
+        /*Searching for the point with the
+        * nearest y - coordinate*/
+        double absDelta = Double.POSITIVE_INFINITY;
+        Point3 p = null;
+        for (Point3 point : points) {
+            if(abs(point.getY() - y) < absDelta) {
+                absDelta = abs(point.getX() - y);
+                p = point;
+            }
+        }
+        return p;
     }
 }
