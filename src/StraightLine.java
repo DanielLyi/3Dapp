@@ -39,7 +39,7 @@ public class StraightLine extends PointSet {
         vecY = vecY / r;
         vecZ = vecZ / r;
 
-        for (double t = -50; t < 100; t = t + 0.1) {
+        for (double t = -50; t < 100; t = t + 1) {
             set.add(new Point3(t * vecX + x0,
                     t * vecY + y0, t * vecZ + z0));
         }
@@ -54,7 +54,7 @@ public class StraightLine extends PointSet {
         Point3 p = null;
         for (Point3 point : points) {
             if(abs(point.getY() - y) < absDelta) {
-                absDelta = abs(point.getX() - y);
+                absDelta = abs(point.getY() - y);
                 p = point;
             }
         }

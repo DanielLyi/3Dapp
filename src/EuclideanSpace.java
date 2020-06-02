@@ -19,16 +19,13 @@ public class EuclideanSpace extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         for (PointSet shape : shapes) {
             ArrayList<Ellipse2D.Double> ells = new ArrayList<>();
-            if(shape.getColor() != null) {
-                g2.setPaint(shape.getColor());
-            } else {
-                g2.setPaint(Color.RED);
-            }
+
             HashSet<Point3> points = shape.getPoints();
             for (Point3 point : points) {
                 /*(origX, origY, origZ) - (x0, y0, z0)*/
@@ -43,9 +40,11 @@ public class EuclideanSpace extends JComponent {
 
                 Point3 project = line.getPointWithNearestY(cam.getYPlane());
 
+                System.out.println(project);
+
                 double unitX = (project.getX() - cam.getOrig().getX()) /
                         cam.getCircleRad();
-                double unitY = project.getZ() - cam.getOrig().getZ() /
+                double unitY = (project.getZ() - cam.getOrig().getZ()) /
                         cam.getCircleRad();
 
                 double screenX = SIDE_LENGTH/2 + unitX * SIDE_LENGTH / 2;
@@ -53,8 +52,14 @@ public class EuclideanSpace extends JComponent {
 
 
                 ells.add(new Ellipse2D.Double(
-                        screenX - 5, screenY - 5,
-                        10, 10));
+                        screenX - 10, screenY - 10,
+                        20, 20));
+            }
+
+            if(shape.getColor() != null) {
+                g2.setPaint(shape.getColor());
+            } else {
+                g2.setPaint(Color.RED);
             }
             for (Ellipse2D.Double ell : ells) {
                 g2.fill(ell);

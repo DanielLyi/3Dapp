@@ -13,7 +13,7 @@ public class Factory {
     public static void main(String[] args) {
         MyFrame frame = new MyFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(1000, 1000);
+        frame.setSize(1500, 1000);
         frame.setVisible(true);
     }
 }
