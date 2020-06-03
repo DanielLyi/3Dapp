@@ -13,7 +13,7 @@ public abstract class PointSet {
     private Color color;
 
     public PointSet() {
-        color = null;
+        color = Color.BLACK;
     }
 
     public PointSet(Color c) {
@@ -40,7 +40,7 @@ public abstract class PointSet {
                     "Collection shouldn't be empty");
         }
         /*If points have already been set,
-           throw na Exception.*/
+           throw an Exception.*/
         if (!set) {
             /*If points weren't set yet,
               copy given entries to the local set*/

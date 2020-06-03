@@ -6,9 +6,6 @@ import java.util.HashSet;
 
 public class EuclideanSpace extends JComponent {
     public static final double SIDE_LENGTH = 800;
-    private double x;
-    private double y;
-    private double z;
     private ArrayList<PointSet> shapes;
     private Camera cam;
 
@@ -28,7 +25,12 @@ public class EuclideanSpace extends JComponent {
 
             HashSet<Point3> points = shape.getPoints();
             for (Point3 point : points) {
-                /*(origX, origY, origZ) - (x0, y0, z0)*/
+                /*vector: /origX\     /x0\
+                          |origY|  -  |y0|
+                          \origZ/     \z0/
+
+                          (vector subtraction)*/
+
                 double vecX = cam.getOrig().getX() - point.getX();
                 double vecY = cam.getOrig().getY() - point.getY();
                 double vecZ = cam.getOrig().getZ() - point.getZ();
@@ -38,10 +40,10 @@ public class EuclideanSpace extends JComponent {
                         vecX, vecY, vecZ
                 );
 
+                /*Finding an intersection with the y-plane*/
                 Point3 project = line.getPointWithNearestY(cam.getYPlane());
 
-                System.out.println(project);
-
+                /*"Unit" is radius of the camera project. circle*/
                 double unitX = (project.getX() - cam.getOrig().getX()) /
                         cam.getCircleRad();
                 double unitY = (project.getZ() - cam.getOrig().getZ()) /
@@ -49,7 +51,6 @@ public class EuclideanSpace extends JComponent {
 
                 double screenX = SIDE_LENGTH/2 + unitX * SIDE_LENGTH / 2;
                 double screenY = SIDE_LENGTH/2 - unitY * SIDE_LENGTH / 2;
-
 
                 ells.add(new Ellipse2D.Double(
                         screenX - 10, screenY - 10,
@@ -59,7 +60,7 @@ public class EuclideanSpace extends JComponent {
             if(shape.getColor() != null) {
                 g2.setPaint(shape.getColor());
             } else {
-                g2.setPaint(Color.RED);
+                g2.setPaint(Color.BLACK);
             }
             for (Ellipse2D.Double ell : ells) {
                 g2.fill(ell);
@@ -74,6 +75,11 @@ public class EuclideanSpace extends JComponent {
 
     public void addShape(PointSet shape) {
         shapes.add(shape);
+    }
+
+    public void setCam(Camera cam) {
+        this.cam = cam;
+        repaint();
     }
 
     public ArrayList<PointSet> getShapes() {

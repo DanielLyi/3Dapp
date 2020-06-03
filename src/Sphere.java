@@ -39,6 +39,6 @@ public class Sphere extends PointSet {
     }
 
     public Sphere(double x0, double y0, double z0, double rad) {
-        this(x0, y0, z0, rad, null);
+        this(x0, y0, z0, rad, Color.BLACK);
     }
 }

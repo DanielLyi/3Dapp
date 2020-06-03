@@ -5,9 +5,9 @@
  */
 public class Point3 {
     /*Cartesian coordinates of the point*/
-    private double x;
-    private double y;
-    private double z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public Point3(double x, double y, double z) {
         this.x = x;
