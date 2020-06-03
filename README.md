@@ -1,4 +1,4 @@
-# 3Dapp
+# 3DApp
 Project to make a pseudo - 3D engine on Java Swing
 
 In this app I want to make a Swing-based 3D engine that will show different 3D shapes by projecting them onto a plane. 
