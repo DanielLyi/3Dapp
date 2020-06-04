@@ -10,5 +10,5 @@ The Java style is based on the default IntelliJ Idea Java code cleanup style.
 All the questions or issues are accepted.
 If you have any, please ask them by creating a new issue.
 
-####The app
+#### The app
 ![Screen](/res/screenshots/sr.jpg)
