@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame {
     private EuclideanSpace space;
@@ -45,9 +43,4 @@ public class MyFrame extends JFrame {
         add(panel);
     }
 
-    private void reinit(double x, double y, double z,
-                        double yPl, double rad) {
-        space.setCam(new Camera(new Point3(x, y, z),
-                yPl, rad));
-    }
 }
