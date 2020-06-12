@@ -30,9 +30,9 @@ public class Sphere extends PointSet {
             while (s < 2 * PI) {
                 points.add(new Point3(x0 + rad * cos(t) * cos(s)
                         , y0 + rad * cos(t) * sin(s), z0 + rad * sin(t)));
-                s = s + 0.05;
+                s = s + 0.5;
             }
-            t = t + 0.05;
+            t = t + 0.5;
         }
         //Adding all the points formed
         super.setPoints(points);

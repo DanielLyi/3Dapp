@@ -14,6 +14,15 @@ public class EuclideanSpace extends JComponent {
         this.cam = cam;
     }
 
+    public Camera getCam() {
+        return cam;
+    }
+
+    public void setCam(Camera cam) {
+        this.cam = cam;
+        repaint();
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -49,15 +58,15 @@ public class EuclideanSpace extends JComponent {
                 double unitY = (project.getZ() - cam.getOrig().getZ()) /
                         cam.getCircleRad();
 
-                double screenX = SIDE_LENGTH/2 + unitX * SIDE_LENGTH / 2;
-                double screenY = SIDE_LENGTH/2 - unitY * SIDE_LENGTH / 2;
+                double screenX = SIDE_LENGTH / 2 + unitX * SIDE_LENGTH / 2;
+                double screenY = SIDE_LENGTH / 2 - unitY * SIDE_LENGTH / 2;
 
                 ells.add(new Ellipse2D.Double(
-                        screenX - 10, screenY - 10,
-                        20, 20));
+                        screenX - 6, screenY - 6,
+                        12, 12));
             }
 
-            if(shape.getColor() != null) {
+            if (shape.getColor() != null) {
                 g2.setPaint(shape.getColor());
             } else {
                 g2.setPaint(Color.BLACK);
@@ -70,16 +79,11 @@ public class EuclideanSpace extends JComponent {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension((int)SIDE_LENGTH, (int)SIDE_LENGTH);
+        return new Dimension((int) SIDE_LENGTH, (int) SIDE_LENGTH);
     }
 
     public void addShape(PointSet shape) {
         shapes.add(shape);
-    }
-
-    public void setCam(Camera cam) {
-        this.cam = cam;
-        repaint();
     }
 
     public ArrayList<PointSet> getShapes() {
